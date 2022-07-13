@@ -46,6 +46,9 @@ function newDeck(){
 
 let playerOneDeck, playerTwoDeck, gameOver
 startGame()
+while(!isGameOver(playerOneDeck, playerTwoDeck)){
+    flipCards(playerOneDeck, playerTwoDeck)
+}
 function startGame(){
     
     const deck = new Deck()
@@ -55,7 +58,7 @@ function startGame(){
     playerOneDeck = new Deck (deck.cards.slice(0, deckMidpoint))
     playerTwoDeck = new Deck (deck.cards.slice(deckMidpoint, deck.numberOfCards))
    console.log(playerOneDeck, playerTwoDeck)
-flipCards(playerOneDeck, playerTwoDeck)
+
   
 
 }
@@ -81,12 +84,6 @@ flipCards(playerOneDeck, playerTwoDeck)
     playerTwoDeck.push(playerTwoCard)
     } 
 
-    if (isGameOver(playerOneDeck, playerTwoDeck)){
-        console.log( "Game over")
-    }
-    updateDeckCount(playerOneDeck, playerTwoDeck)
-}
-
 
 
 
@@ -97,14 +94,7 @@ const playerTwoCard = playerTwoDeck.pop()
 console.log(playerOneCard, playerTwoCard)
 checkWinner(playerOneCard, playerTwoCard) }
 
-function updateDeckCount(playerOneDeck, playerTwoDeck){
-    playerOneDeck = playerOneDeck.numberOfCards
-    playerTwoDeck = playerTwoDeck.numberOfCards
-    flipCards(playerOneDeck, playerTwoDeck)
-}
 
 function isGameOver(playerOneDeck, playerTwoDeck){
-    return playerOneDeck.numberOfCards || playerTwoDeck.numberOfCards === 0
+    return playerOneDeck.numberOfCards === 0 || playerTwoDeck.numberOfCards === 0
 }
-
-
